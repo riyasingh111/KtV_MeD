@@ -1,0 +1,713 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kt/V &amp; URR Calculator – Check Your Dialysis Adequacy</title>
+<meta name="description" content="Free Kt/V and URR calculator for hemodialysis. Enter your BUN, session time and weight to see in plain words if your dialysis is enough. Includes eKt/V.">
+<meta name="keywords" content="Kt/V calculator, URR calculator, dialysis adequacy calculator, single pool Kt/V calculator, equilibrated Kt/V calculator, urea reduction ratio calculator, Daugirdas formula calculator, peritoneal dialysis Kt/V">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="theme-color" content="#1c3f74">
+<link rel="canonical" href="https://www.medindia.net/doctors/clinical_cal/ktv.asp">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Medindia - Trusted Health Information">
+<meta property="og:title" content="Kt/V &amp; URR Calculator – Check Your Dialysis Adequacy">
+<meta property="og:description" content="Free Kt/V and URR calculator for hemodialysis. See in plain words if your dialysis is enough.">
+<meta property="og:url" content="https://www.medindia.net/doctors/clinical_cal/ktv.asp">
+<meta property="og:image" content="https://www.medindia.net/patients/calculators/images/300_250/ktv.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@Medindia">
+<meta name="twitter:title" content="Kt/V &amp; URR Calculator – Check Your Dialysis Adequacy">
+<meta name="twitter:description" content="Free Kt/V and URR calculator for hemodialysis. See in plain words if your dialysis is enough.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Kt/V & URR Dialysis Adequacy Calculator","url":"https://www.medindia.net/doctors/clinical_cal/ktv.asp","applicationCategory":"HealthApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Medindia","url":"https://www.medindia.net"}}
+</script>
+<script type="application/ld+json" id="faq-ld"></script>
+<style>
+:root{--navy:#1c3f74;--navy2:#2a5aa3;--teal:#0f8b8d;--bg:#f4f7fb;--card:#fff;--ink:#1d2733;--mute:#5a6776;--line:#dbe3ee;--green:#1a7f4b;--greenbg:#e6f6ed;--amber:#a86a00;--amberbg:#fff4dc;--red:#b3261e;--redbg:#fde9e7;--r:14px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font:17px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+a{color:var(--navy2)}
+.wrap{max-width:980px;margin:0 auto;padding:0 16px}
+header.top{background:var(--navy);color:#fff}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:54px}
+header.top b{letter-spacing:.14em;font-size:19px}
+header.top a{color:#cfe0ff;text-decoration:none;font-size:14px;margin-left:16px}
+.crumbs{font-size:14px;color:var(--mute);padding:12px 0}
+h1{font-size:clamp(26px,4.5vw,36px);line-height:1.2;margin:.2em 0 .4em;color:var(--navy)}
+h2{font-size:clamp(21px,3.2vw,26px);color:var(--navy);margin:2em 0 .5em;line-height:1.3}
+h3{font-size:18px;margin:1.2em 0 .3em}
+p{margin:.5em 0 1em}
+.lead{font-size:19px}
+sup a{text-decoration:none;font-weight:600;font-size:.8em}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px;margin:18px 0;box-shadow:0 1px 2px rgba(20,40,80,.05)}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.tab,.chip,.seg button{font:inherit;font-size:15px;border:1px solid var(--line);background:#fff;color:var(--ink);padding:8px 14px;border-radius:999px;cursor:pointer}
+.tab[aria-selected=true],.chip[aria-pressed=true],.seg button[aria-pressed=true]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+label{font-weight:600;font-size:15px;display:block;margin-bottom:4px}
+.row{display:flex;gap:8px;align-items:center}
+input[type=number],input[type=email],select{width:100%;font:inherit;padding:10px 12px;border:1px solid #b9c6d8;border-radius:10px;background:#fff}
+input:focus,select:focus,button:focus-visible,summary:focus-visible{outline:3px solid #8fb4f0;outline-offset:1px}
+.seg{display:flex;gap:4px}
+.seg button{padding:8px 10px;border-radius:10px;font-size:14px;white-space:nowrap}
+.hint{font-size:14px;color:var(--mute);margin-top:3px}
+.btn{font:inherit;font-weight:700;background:var(--teal);color:#fff;border:0;border-radius:12px;padding:13px 26px;cursor:pointer;font-size:17px}
+.btn.alt{background:#fff;color:var(--navy);border:1px solid var(--navy)}
+.btn:hover{filter:brightness(1.07)}
+.err{color:var(--red);font-weight:600;margin-top:10px;min-height:1.2em}
+.box{border:2px dashed #9db3d4;border-radius:12px;padding:14px;margin:14px 0;background:#fbfdff}
+.box>.tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.05em;color:var(--navy2);text-transform:uppercase;margin-bottom:6px}
+table{border-collapse:collapse;width:100%;font-size:15.5px}
+th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top}
+th{background:#eef3fa;cursor:default}
+tr.hl td{background:#fff8d9}
+.tabletools{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.callout{border-left:5px solid var(--teal);background:#eaf7f7;padding:12px 16px;border-radius:0 10px 10px 0;margin:14px 0}
+.callout.warn{border-color:var(--amber);background:var(--amberbg)}
+details{border:1px solid var(--line);border-radius:12px;background:#fff;margin:8px 0;padding:0 16px}
+summary{cursor:pointer;font-weight:600;padding:13px 0}
+details[open] summary{color:var(--navy)}
+.checks label{font-weight:400;display:flex;gap:10px;align-items:flex-start;padding:7px 0;cursor:pointer}
+.checks input{margin-top:6px;width:18px;height:18px}
+.meter{height:14px;background:#e8edf5;border-radius:99px;overflow:hidden}
+.meter>i{display:block;height:100%;width:0;background:var(--teal);transition:width .35s}
+.meter.over>i{background:var(--red)}
+.cards3{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.mini{border:1px solid var(--line);border-radius:12px;padding:14px;background:#fff}
+.mini h4{margin:0 0 4px;font-size:16px;color:var(--navy)}
+input[type=range]{width:100%;accent-color:var(--teal)}
+.big{font-size:clamp(34px,8vw,54px);font-weight:800;line-height:1}
+.badge{display:inline-block;padding:6px 14px;border-radius:999px;font-weight:700;font-size:15px}
+.badge.g{background:var(--greenbg);color:var(--green)}.badge.a{background:var(--amberbg);color:var(--amber)}.badge.r{background:var(--redbg);color:var(--red)}
+.hero{display:grid;gap:20px;grid-template-columns:minmax(0,260px) 1fr;align-items:center}
+@media(max-width:640px){.hero{grid-template-columns:1fr}}
+.stat{display:flex;gap:18px;flex-wrap:wrap;margin-top:10px}
+.share{display:flex;flex-wrap:wrap;gap:8px}
+.share a,.share button{font:inherit;font-size:15px;text-decoration:none;border:1px solid var(--line);border-radius:10px;padding:8px 14px;background:#fff;color:var(--navy);cursor:pointer}
+code,textarea{font:13px/1.5 ui-monospace,Menlo,Consolas,monospace}
+textarea{width:100%;border:1px solid #b9c6d8;border-radius:10px;padding:10px;background:#f6f8fb}
+.refs li{margin:0 0 12px;padding-left:.2em;word-break:break-word;font-size:15px}
+.hide{display:none!important}
+.opt{display:flex;gap:8px;flex-wrap:wrap}
+.game-card{font-size:19px;min-height:84px;display:flex;align-items:center}
+footer{background:#13294d;color:#cdd8ea;margin-top:50px;padding:26px 0;font-size:14px}
+footer a{color:#fff}
+.disc{font-size:14px;color:var(--mute)}
+@media print{header.top,.share,footer,.noprint,.box.noprint{display:none!important}body{background:#fff}.card{box-shadow:none}}
+
+/* ===== responsive + new components ===== */
+img,svg{max-width:100%}
+.grid,.cards3{grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr))}
+a.btn{display:inline-block;text-decoration:none;text-align:center}
+.chip,.tab,.seg button{min-height:40px}
+.hero svg{display:block;margin:0 auto;width:100%;max-width:260px}
+.meter.near>i{background:#e5a100}
+#games{scroll-margin-top:12px}
+.how{background:#f1f5fb;border-radius:12px;padding:10px 16px;margin:10px 0}.how ol{margin:.4em 0;padding-left:1.2em}.how li{margin:.3em 0}
+.fbtxt{font-size:18px;margin:8px 0}
+.fbitems{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));margin:12px 0}
+.fbi{font:inherit;font-size:15px;border:1px solid var(--line);background:#fff;border-radius:12px;padding:10px 8px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;min-height:92px;color:var(--ink)}
+.fbi .em{font-size:28px;line-height:1}.fbi small{color:var(--teal);font-weight:700;font-size:14px}.fbi:active{transform:scale(.97)}
+.share{gap:10px}
+.share .sh{display:inline-flex;align-items:center;gap:8px;background:var(--c,#1c3f74);color:#fff;border:0;border-radius:12px;padding:10px 16px;font-weight:600;min-height:46px}
+.share .sh:hover{filter:brightness(1.12)}
+.fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:50;background:var(--navy);color:#fff;border:0;border-radius:999px;padding:13px 20px;font:inherit;font-weight:700;font-size:15px;box-shadow:0 6px 18px rgba(20,40,80,.35);cursor:pointer}
+@media(min-width:1200px){.wrap{max-width:1080px}}
+@media(max-width:720px){body{font-size:16px}h2{margin-top:1.6em}.card{padding:16px}.lead{font-size:17px}
+ header.top .wrap{height:auto;min-height:54px;flex-wrap:wrap;padding-top:8px;padding-bottom:8px}header.top a{margin:0 14px 0 0}}
+@media(max-width:560px){.wrap{padding:0 12px}
+ .tab{flex:1 1 100%;text-align:center;border-radius:12px}
+ .row{flex-wrap:wrap}.row>input{flex:1 1 120px;min-width:0}
+ .btn{width:100%}
+ #cmp,#resTbl{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+ th,td{padding:8px 7px;font-size:14.5px}
+ .stat .tile{flex:1 1 calc(50% - 9px);min-width:0}
+ .share .sh{width:48px;height:48px;padding:0;justify-content:center;border-radius:50%}.share .sh span{display:none}
+ .fbitems{grid-template-columns:repeat(2,1fr)}
+ .fab{padding:12px 16px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.meter>i{transition:none}}
+@media print{.fab{display:none!important}}
+
+/* ===== review round: reviewer line, organ icon, talking kidney ===== */
+.ki::before{content:"";display:inline-block;width:1.05em;height:1.05em;margin-right:.3em;vertical-align:-.12em;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M58 8C82 6 96 24 94 48 92 74 78 94 54 94 30 94 20 80 26 66 30 58 40 56 40 48 40 40 30 36 28 28 26 16 42 10 58 8Z' fill='%23e07a6b' stroke='%23b5483c' stroke-width='5'/%3E%3C/svg%3E") center/contain no-repeat}
+.rev{font-size:14px;color:var(--mute);margin:6px 0 -6px}
+.rev b{color:var(--navy)}
+.kid-row{display:flex;gap:14px;align-items:center;background:#f1f5fb;border-radius:12px;padding:10px 14px;margin:0 0 14px}
+.kid-row .txt{flex:1;min-width:0}
+.kid-row .opt{margin-top:6px}
+.kid{width:76px;height:76px;flex:none;display:block;cursor:pointer;background:none;border:0;padding:0;border-radius:50%}
+.kid svg{width:100%;height:100%;display:block}
+.kid .mouth{transform-box:fill-box;transform-origin:center}
+.kid.talking svg{animation:bob .5s ease-in-out infinite alternate}
+.kid.talking .mouth{animation:talk .26s ease-in-out infinite alternate}
+@keyframes talk{from{transform:scaleY(.35)}to{transform:scaleY(1.35)}}
+@keyframes bob{from{transform:translateY(0) rotate(-2deg)}to{transform:translateY(-3px) rotate(2deg)}}
+.say[aria-pressed=true]{background:var(--teal);color:#fff;border-color:var(--teal)}
+.nospeech .say,.nospeech .kid{display:none!important}
+details.what summary,details.learn summary{font-weight:600}
+details.what p{margin:.4em 0 .8em}
+.learn-g details{margin:6px 0}
+.learn-g .say{margin:0 0 12px}
+.stat .tile{font:inherit;color:inherit;text-align:left;border:0;background:#f1f5fb;border-radius:12px;padding:10px 16px;min-width:120px;cursor:pointer;display:block}
+.stat .tile small{display:block;color:var(--mute);font-size:13px}
+.stat .tile[aria-pressed=true]{outline:2px solid var(--teal)}
+.lim{max-width:240px}
+.fbi:disabled{opacity:.45;cursor:not-allowed}
+.pdbtns{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:10px}
+.gem{font-size:26px;margin-right:10px}
+@media(prefers-reduced-motion:reduce){.kid.talking svg,.kid.talking .mouth{animation:none}}
+@media print{body.printpd header.top,body.printpd .crumbs,body.printpd .rev,body.printpd #view-input>:not(#calcCard),body.printpd .tabs,body.printpd .fab{display:none!important}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap"><b>MEDINDIA</b><nav><a href="https://www.medindia.net/patients/calculators/index.asp">Calculators</a><a href="https://www.medindia.net/health/treatment/dialysis.htm">Dialysis</a><a href="https://www.medindia.net/medicalnews/latesthealthnews_index.asp">News</a></nav></div></header>
+
+<div class="wrap">
+<div class="crumbs"><a href="https://www.medindia.net">Medindia</a> » <a href="https://www.medindia.net/patients/calculators/index.asp">Calculators</a> » <a href="https://www.medindia.net/patients/calculators/clinical-tools.asp">Clinical Tools</a> » Kt/V &amp; URR Calculator</div>
+
+<!-- ===================== PAGE 1: INPUT ===================== -->
+<main id="view-input">
+<h1>Kt/V and URR Dialysis Adequacy Calculator</h1>
+<p class="lead">Is your dialysis cleaning your blood enough? This free tool turns two blood test numbers and a few details from your session into a simple answer. Doctors use two scores, Kt/V and URR. For most people on hemodialysis three times a week, a Kt/V of at least 1.2 is the minimum goal, and about 1.4 is the aim.<sup><a href="#ref-1">[1]</a></sup> Share your result with your care team, because a number is only one part of the picture.</p>
+
+<p class="rev"><span class="ki"></span>Medically reviewed by <b>Dr. Nithya Krishnan</b> and <b>Dr. A. Chandra Shekar</b>, Nephrologists</p>
+<section class="card" id="calcCard" aria-labelledby="calc-h">
+  <h2 id="calc-h" style="margin-top:0">Kt/V &amp; URR Calculator</h2>
+  <div class="kid-row noprint"><span class="kid-slot"></span><div class="txt"><b>Hi! I am your kidney buddy.</b> Tap me or a button and I will read it out loud.
+    <div class="opt"><button type="button" class="chip say" data-read="#whatBody" aria-pressed="false">🔊 What is Kt/V?</button><button type="button" class="chip say" data-read="#howBody" aria-pressed="false">🔊 How to fill the form</button></div></div></div>
+  <details class="what"><summary>ℹ️ What is Kt/V? What is URR? (tap to read)</summary>
+    <div id="whatBody"><p><b>Kt/V</b> is a score that shows how much waste (called urea) one dialysis session cleared from your blood. Think of your blood as a pond. Kt/V counts how many “pond-fuls” of water were cleaned. A higher score means more cleaning. For most people on hemodialysis three times a week, the usual minimum is 1.2 and the aim is about 1.4.<sup><a href="#ref-1">[1]</a></sup></p>
+    <p><b>URR</b> (urea reduction ratio) is simpler. It is the percent of urea that dropped during the session. For example, 70% means about 7 out of every 10 parts of urea were cleared.</p>
+    <p>Both come from the same two blood tests: one before and one after your session.</p></div></details>
+  <details class="what"><summary>📝 How do I fill this form? (tap to read)</summary>
+    <div id="howBody"><ol><li>Get your before and after BUN numbers from your dialysis centre or your lab report.</li><li>Enter your session time, the fluid removed and your weight after dialysis.</li><li>Choose how your blood leaves the body: fistula or graft, or catheter.</li><li>Tap Calculate. Then share the result with your care team.</li></ol></div></details>
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" aria-selected="true" data-mode="hd">Hemodialysis (Kt/V + URR)</button>
+    <button class="tab" role="tab" aria-selected="false" data-mode="pd">Peritoneal dialysis (PD Kt/V)</button>
+  </div>
+
+  <form id="form-hd" novalidate>
+    <div class="grid">
+      <div><label for="pre">Pre-dialysis BUN (before session)</label>
+        <div class="row"><input id="pre" type="number" step="any" min="0" inputmode="decimal" placeholder="e.g. 70">
+        <div class="seg" data-seg="bun"><button type="button" aria-pressed="true" data-u="mgdl">mg/dL</button><button type="button" aria-pressed="false" data-u="mmol">mmol/L</button></div></div>
+        <div class="hint">BUN = blood urea nitrogen, a waste product measured in blood.</div></div>
+      <div><label for="post">Post-dialysis BUN (end of session)</label>
+        <div class="row"><input id="post" type="number" step="any" min="0" inputmode="decimal" placeholder="e.g. 20"><span id="bunUnitLbl" class="hint" style="margin:0">mg/dL</span></div>
+        <div class="hint">Use the post-dialysis BUN value provided by your dialysis centre, collected using their standard sampling protocol.</div></div>
+      <div><label for="hr">Dialysis time</label>
+        <div class="row"><input id="hr" type="number" min="0" max="12" placeholder="hours" inputmode="numeric"><input id="mn" type="number" min="0" max="59" placeholder="minutes" inputmode="numeric"></div>
+        <div class="hint">Time your blood was actually being cleaned.</div></div>
+      <div><label for="uf">Fluid removed (ultrafiltration)</label>
+        <div class="row"><input id="uf" type="number" step="any" min="0" inputmode="decimal" placeholder="e.g. 2.5">
+        <div class="seg" data-seg="uf"><button type="button" aria-pressed="true" data-u="l">L</button><button type="button" aria-pressed="false" data-u="gal">gal</button></div></div></div>
+      <div><label for="wt">Weight after dialysis</label>
+        <div class="row"><input id="wt" type="number" step="any" min="0" inputmode="decimal" placeholder="e.g. 68">
+        <div class="seg" data-seg="wt"><button type="button" aria-pressed="true" data-u="kg">kg</button><button type="button" aria-pressed="false" data-u="lb">lb</button></div></div></div>
+      <div><label for="acc">How does your blood leave the body?</label>
+        <select id="acc"><option value="av">Fistula or graft</option><option value="cvc">Catheter (tube in a neck/chest vein)</option></select>
+        <div class="hint">Used only for the “after-rebound” (eKt/V) estimate.</div></div>
+    </div>
+    <p class="hint">All fields are needed.</p>
+    <div class="row" style="flex-wrap:wrap"><button class="btn" type="submit">Calculate my Kt/V</button><button class="btn alt" type="button" id="fillEx">Fill an example</button></div>
+    <div class="err" id="err-hd" role="alert"></div>
+  </form>
+
+  <form id="form-pd" class="hide" novalidate>
+    <div class="grid">
+      <div><label for="pdv">24-hour drained fluid (litres)</label><input id="pdv" type="number" step="any" min="0" placeholder="e.g. 9"><div class="hint">Usually about 4 to 20 litres. Enter litres, not mL.</div></div>
+      <div><label for="pdd">Urea in drained fluid</label><input id="pdd" type="number" step="any" min="0" placeholder="e.g. 45"></div>
+      <div><label for="pdp">Urea in blood (same units)</label><input id="pdp" type="number" step="any" min="0" placeholder="e.g. 50"><div class="hint">Cannot be lower than the urea in drained fluid.</div></div>
+      <div><label for="pdvv">Body water, V (litres)</label><input id="pdvv" type="number" step="any" min="0" placeholder="e.g. 36"><div class="hint">Use the value your clinic gave you. Don't know it? Weight (in kg) × 0.6 (men) or × 0.5 (women) gives a rough guess.</div></div>
+    </div>
+    <div class="row" style="margin-top:10px"><button class="btn" type="submit">Calculate PD Kt/V</button></div>
+    <div class="err" id="err-pd" role="alert"></div>
+    <div id="pd-out" class="callout hide" aria-live="polite"></div>
+  </form>
+</section>
+
+<div class="box noprint"><span class="tag">Interactive: tap a word</span>
+<div class="opt" id="gloss"></div><p id="glossOut" class="hint" style="margin:8px 0 0">Tap a term to see what it means in plain words.</p></div>
+
+<h2><span class="ki"></span>What is Kt/V?</h2>
+<p>Think of your blood as a pond. Dialysis is a filter that cleans the pond. <b>Kt/V</b> tells you how many “pond-fuls” of water were cleaned during one session. A score of 1.2 means the filter cleaned the pond’s worth of water about one and a fifth times.</p>
+<ul><li><b>K</b> = how fast the filter cleans (clearance)</li><li><b>t</b> = how long the session ran (time)</li><li><b>V</b> = how much water is in your body (volume)</li></ul>
+<p>The longer the session or the stronger the filter, the higher the score.</p>
+
+<div class="box noprint"><span class="tag">Interactive: try Kt/V from scratch</span>
+<div class="grid">
+<div><label>Filter speed (K): <output id="kO">240</output> mL/min</label><input type="range" id="kR" min="150" max="320" value="240"></div>
+<div><label>Time (t): <output id="tO">4.0</output> hours</label><input type="range" id="tR" min="2" max="6" step="0.25" value="4"></div>
+<div><label>Body water (V): <output id="vO">38</output> litres</label><input type="range" id="vR" min="25" max="50" value="38"></div>
+</div>
+<p style="margin-top:12px"><b>Simple-model Kt/V: <span id="kvO" class="big" style="font-size:30px">1.5</span></b> <span id="kvMsg" class="badge g">Reaches the 1.4 aim</span></p>
+<div class="meter" aria-hidden="true"><i id="kvBar"></i></div>
+<p class="hint">A teaching model only. Your real result comes from the calculator above, which uses your blood tests.</p></div>
+
+<h2><span class="ki"></span>Your kidneys in 4 taps</h2>
+<div class="learn-g">
+<details name="kfacts"><summary>What do kidneys do?</summary><div id="lf1"><p>Healthy kidneys filter your blood. They remove waste and extra water and make urine. They also help control blood pressure and keep your body's salts in balance.</p></div><button type="button" class="chip say" data-read="#lf1" aria-pressed="false">🔊 Read this</button></details>
+<details name="kfacts"><summary>What is urea?</summary><div id="lf2"><p>Urea is a waste made when your body uses protein. When the kidneys cannot remove it, it builds up in the blood. Dialysis helps clear it, and Kt/V and URR are two ways to measure how much was cleared.</p></div><button type="button" class="chip say" data-read="#lf2" aria-pressed="false">🔊 Read this</button></details>
+<details name="kfacts"><summary>Why does dialysis need time?</summary><div id="lf3"><p>Waste moves out of the blood slowly, little by little. Completing your prescribed dialysis session is important for receiving the intended dialysis dose.</p></div><button type="button" class="chip say" data-read="#lf3" aria-pressed="false">🔊 Read this</button></details>
+<details name="kfacts"><summary>What do the numbers tell me?</summary><div id="lf4"><p>Kt/V and URR show how much urea one session cleared. They are only one part of the picture. How you feel, your blood pressure and your fluid control matter too. Your dialysis team will explain what is right for you.</p></div><button type="button" class="chip say" data-read="#lf4" aria-pressed="false">🔊 Read this</button></details>
+</div>
+
+<h2>What is the difference between Kt/V and URR?</h2>
+<p><b>URR</b> (urea reduction ratio) is the simpler one. It is the percent of waste (urea) that dropped during the session. Kt/V also counts the fluid removed and the urea your body made during the session, so it is more detailed. Both use the same two blood tests.</p>
+<table id="cmp"><thead><tr><th>Question</th><th>Kt/V</th><th>URR</th></tr></thead><tbody>
+<tr><td>Minimum goal (3 sessions a week)</td><td>1.2 per session<sup><a href="#ref-1">[1]</a></sup></td><td>About 65%</td></tr>
+<tr><td>Aim for</td><td>About 1.4<sup><a href="#ref-1">[1]</a></sup></td><td>Around 70% or more</td></tr>
+<tr><td>Uses before and after BUN</td><td>Yes</td><td>Yes</td></tr>
+<tr><td>Counts fluid removed and session length</td><td>Yes</td><td>No</td></tr>
+<tr><td>Easy to work out by hand</td><td>Harder</td><td>Easy</td></tr>
+</tbody></table>
+
+<h2>How Kt/V is worked out (Daugirdas formula)</h2>
+<p>This calculator uses the widely used “second generation” Daugirdas formula.<sup><a href="#ref-2">[2]</a></sup> In simple steps:</p>
+<ol><li>Divide the after-BUN by the before-BUN. Call this <b>R</b>.</li><li>Take away a small amount for urea your body makes during the session.</li><li>Add a bonus for the fluid that was removed, because it also carries urea out.</li></ol>
+<details><summary>Show the formula and what each part means</summary>
+<p><b>spKt/V = −ln(R − 0.008 × t) + (4 − 3.5 × R) × UF ÷ W</b></p>
+<table><tr><th>Symbol</th><th>Meaning</th></tr><tr><td>R</td><td>Post-dialysis BUN ÷ pre-dialysis BUN</td></tr><tr><td>t</td><td>Session time in hours</td></tr><tr><td>UF</td><td>Fluid removed, in litres</td></tr><tr><td>W</td><td>Weight after dialysis, in kg</td></tr></table>
+<p><b>URR (%) = (1 − R) × 100</b></p>
+<p><b>eKt/V</b> (equilibrated) is a little lower than spKt/V. It allows for urea that creeps back into the blood after dialysis ends (called rebound). The calculator estimates it with a standard rate equation, using your access type.</p></details>
+
+<h2><span class="ki"></span>Signs your dialysis may not be enough</h2>
+<p>You may not feel the build-up of waste at first. Tick any that you notice. This is not a diagnosis.</p>
+<div class="box noprint"><span class="tag">Interactive checklist</span>
+<div class="checks grid" id="sym"></div>
+<p id="symOut" class="callout" style="margin-bottom:0">Tick anything you have noticed lately.</p></div>
+
+<h2>Simple habits to get your full dialysis</h2>
+<p>Tap a topic. Small habits add up.</p>
+<div class="tabletools noprint" id="habTabs">
+<button class="chip" aria-pressed="true" data-h="time">⏱ Time &amp; access</button>
+<button class="chip" aria-pressed="false" data-h="fluid">💧 Fluid</button>
+<button class="chip" aria-pressed="false" data-h="move">🚴 Move</button>
+<button class="chip" aria-pressed="false" data-h="eat">🍽 Eat</button>
+<button class="chip" aria-pressed="false" data-h="calm">🧘 Calm mind</button></div>
+<div class="card" id="hab">
+<div data-h="time"><h3>Be there for every minute</h3><ul><li>Arrive on time and stay until the end.</li><li>Make up for time lost to bathroom trips or machine problems.<sup><a href="#ref-1">[1]</a></sup></li><li>Do not accept a shorter session just because the unit is busy.</li><li>Tell staff if your tube or needle site hurts or the flow seems slow.</li></ul></div>
+<div data-h="fluid" class="hide"><h3>Keep fluid gain between sessions small</h3><p>Fluid you gain between sessions has to be removed in the next one. A 2025 review suggests keeping that gain under about 4 to 4.5% of body weight. Helpful ideas include less salt, which cuts thirst, learning with a counsellor, and using phone apps to track what you drink.<sup><a href="#ref-3">[3]</a></sup></p><p class="hint">Your own fluid limit is decided by your dialysis care team.</p></div>
+<div data-h="move" class="hide"><h3>Gentle exercise helps</h3><p>A 2025 review of 31 studies (1,365 people) found that exercise during dialysis, such as pedalling or light resistance work, improved grip strength, walking distance, step counts and tiredness.<sup><a href="#ref-4">[4]</a></sup> Always ask your team what is safe for you first.</p></div>
+<div data-h="eat" class="hide"><h3>Food fuels you</h3><p>People on dialysis often need more protein than people with healthy kidneys. The 2020 nutrition guideline suggests about 1.0 to 1.2 g of protein per kg of body weight a day for stable people on dialysis.<sup><a href="#ref-5">[5]</a></sup> A kidney dietitian will adjust this for you.</p>
+<div class="box noprint"><span class="tag">Interactive: protein helper</span><label for="pw">Your dry weight (kg)</label><input id="pw" type="number" min="20" max="250" placeholder="e.g. 68" style="max-width:200px"><p id="pOut" class="hint" style="margin:8px 0 0">Enter your weight to see an example range.</p></div></div>
+<div data-h="calm" class="hide"><h3>Ease stress and worry</h3><p>A review of six trials found that mindfulness, such as slow breathing and meditation, improved anxiety, low mood and sleep in some people on hemodialysis, and appeared safe.<sup><a href="#ref-6">[6]</a></sup> It is an extra support, not a replacement for dialysis.</p></div>
+</div>
+
+<h2>A gentler start for some people</h2>
+<p>Some people who still pass a good amount of urine start with fewer sessions, then add more over time. A 2025 study compared this “start slow” approach with standard schedules. More people in the gentler group still had some natural kidney function, and bloodstream infections were less common. Because it was a case-control study, it cannot prove cause, and this approach is not right for everyone.<sup><a href="#ref-7">[7]</a></sup> Ask your kidney doctor before changing any schedule.</p>
+
+<h2>Frequently asked questions</h2>
+<div id="faq"></div>
+
+<div class="card noprint"><h2 style="margin-top:0">Embed this calculator</h2>
+<p class="hint">Blogs, clinics and schools can add this tool to their pages. (The host page must support the embed link.)</p>
+<textarea id="embed" rows="3" readonly>&lt;iframe src="https://www.medindia.net/doctors/clinical_cal/ktv.asp?embed=1" width="100%" height="720" style="border:0" title="Kt/V and URR calculator by Medindia" loading="lazy"&gt;&lt;/iframe&gt;</textarea>
+<button class="btn alt" id="copyEmbed" style="margin-top:8px">Copy embed code</button> <span id="copyMsg" class="hint"></span></div>
+
+<section id="refs1" class="card"><h2 style="margin-top:0">References</h2><ol class="refs" data-refs></ol><p class="hint">The evidence on this page is reviewed periodically and updated.</p></section>
+<p class="disc">Developed by Medindia Content Team. Medically reviewed by Dr. Nithya Krishnan and Dr. A. Chandra Shekar, Nephrologists. This tool is for information only and does not replace advice from your kidney doctor or dialysis team.</p>
+</main>
+
+<!-- ===================== PAGE 2: RESULT ===================== -->
+<main id="view-result" class="hide">
+<h1><span class="ki"></span>Your Kt/V and URR Result</h1>
+<section class="card"><div class="hero">
+  <div><svg id="gauge" viewBox="0 0 220 130" role="img" aria-label="Kt/V gauge"></svg></div>
+  <div><span class="badge" id="rBadge"></span>
+  <h2 id="rHead" style="margin:.4em 0 .2em"></h2><p id="rSay" style="margin:0"></p>
+  <div class="stat"><button type="button" class="tile" data-t="sp" aria-pressed="false"><small>spKt/V</small><b id="sSp"></b></button><button type="button" class="tile" data-t="urr" aria-pressed="false"><small>URR</small><b id="sUrr"></b></button><button type="button" class="tile" data-t="ek" aria-pressed="false"><small>eKt/V (after rebound)</small><b id="sEk"></b></button></div>
+  <p id="tileOut" class="hint" style="margin:8px 0 0" aria-live="polite">Tap a number to see what it means.</p></div>
+</div>
+<div class="kid-row noprint" style="margin:14px 0 0"><span class="kid-slot"></span><div class="txt"><b>Want it read out?</b> I can tell you your result in plain words.<div class="opt"><button type="button" class="chip say" id="sayRes" aria-pressed="false">🔊 Read my result aloud</button></div></div></div>
+<div class="row noprint" style="margin-top:16px;flex-wrap:wrap"><button class="btn alt" id="again">← Calculate again</button><a class="btn" href="#games" id="toGames" style="background:var(--teal);color:#fff;border:0">🎮 Play the games</a><button class="btn alt" id="copyRes">Copy my result</button><button class="btn alt" onclick="window.print()">Print</button><span id="copyRes2" class="hint"></span></div></section>
+
+<h2>Your numbers next to the goal</h2>
+<div class="callout"><b>Please note:</b> These targets mainly apply to conventional hemodialysis done three times a week. If your schedule is different, your dialysis team will advise your own target.</div>
+<div class="tabletools noprint"><span class="hint" style="align-self:center">Tap a row to highlight it.</span></div>
+<table id="resTbl"><thead><tr><th>Measure</th><th>Your result</th><th>Goal</th><th>Status</th></tr></thead><tbody></tbody></table>
+<p class="hint">Goals are for hemodialysis three times a week.<sup><a href="#ref-1">[1]</a></sup> The numbers come from the Daugirdas formula.<sup><a href="#ref-2">[2]</a></sup></p>
+
+<h2>What does my result mean?</h2>
+<div class="card" id="meaning"></div>
+<div id="highNote" class="callout warn hide">A Kt/V far above the aim (over about 2.0) is usually fine, but sometimes it is caused by a typing mistake or a blood sample taken at the wrong moment. Double-check your numbers, and ask your team if they look surprising.</div>
+
+<h2>Why might a number be low?</h2>
+<p>Tap a reason to read more.</p>
+<div class="tabletools noprint" id="whyTabs"></div>
+<div class="card" id="whyOut">Pick a reason above.</div>
+
+<div class="box noprint"><span class="tag">Interactive: what if the session ran longer?</span>
+<label>Extra time: <output id="exO">0</output> minutes</label><input type="range" id="exR" min="0" max="90" step="15" value="0">
+<p id="exOut" style="margin:10px 0 0"></p>
+<p class="hint">A rough guide only. Kt/V grows about in line with time if everything else stays the same. Your team decides any change.</p></div>
+
+<h2>Habits that match your result</h2>
+<div class="tabletools noprint" id="lifeTabs">
+<button class="chip" aria-pressed="true" data-l="all">All</button><button class="chip" aria-pressed="false" data-l="time">⏱ Time</button><button class="chip" aria-pressed="false" data-l="fluid">💧 Fluid</button><button class="chip" aria-pressed="false" data-l="move">🚴 Move</button><button class="chip" aria-pressed="false" data-l="eat">🍽 Eat</button><button class="chip" aria-pressed="false" data-l="calm">🧘 Calm</button></div>
+<div class="cards3" id="lifeCards">
+<div class="mini" data-l="time"><h4>⏱ Protect your time</h4><p>Stay for every minute and make up lost time. Completing your prescribed dialysis session is important for receiving the intended dialysis dose.<sup><a href="#ref-1">[1]</a></sup></p></div>
+<div class="mini" data-l="fluid"><h4>💧 Keep weight gain small</h4><p>Less fluid between sessions means gentler fluid removal. The target is under about 4 to 4.5% of body weight.<sup><a href="#ref-3">[3]</a></sup></p></div>
+<div class="mini" data-l="move"><h4>🚴 Move during dialysis</h4><p>Pedalling or light resistance work improved strength, walking and tiredness in a 2025 review.<sup><a href="#ref-4">[4]</a></sup></p></div>
+<div class="mini" data-l="eat"><h4>🍽 Eat enough protein</h4><p>Many people need about 1.0 to 1.2 g per kg a day. Ask your dietitian.<sup><a href="#ref-5">[5]</a></sup></p></div>
+<div class="mini" data-l="calm"><h4>🧘 Calm your mind</h4><p>Mindfulness helped anxiety and sleep in some trials.<sup><a href="#ref-6">[6]</a></sup></p></div>
+<div class="mini" data-l="time"><h4>📝 Bring your numbers</h4><p>Show this result at your next visit and ask: “What is my goal, and what can we change?”</p></div>
+</div>
+
+<h2>Newer thinking on dialysis dose</h2>
+<p>Kt/V only measures urea. Many people also care about how they feel, their energy, and their other blood tests. If you still pass urine, a gentler start with fewer sessions may suit some people. In a 2025 study, more of the people who started this way still had some of their own natural kidney function (the ability to make urine) later on. The study cannot prove that the gentler start was the reason. Ask your kidney doctor before changing any schedule.<sup><a href="#ref-7">[7]</a></sup></p>
+
+<section id="games"><h2>🎮 Two quick games to learn the habits</h2><p>Learning sticks better when it is fun. Each game takes about a minute.</p>
+<div class="card noprint"><h2 style="margin-top:0"><span class="ki"></span>💧 Game 1: Fluid Challenge</h2>
+<div class="how"><b>How it works</b>
+<p style="margin:.5em 0">Your dialysis team may give you a <b>daily fluid limit</b> based on your urine output, weight, dialysis schedule and health.</p>
+<label for="fbLim">Enter the daily fluid limit advised by your dialysis team (mL)</label>
+<input class="lim" id="fbLim" type="number" inputmode="numeric" min="0" step="50" placeholder="e.g. 1000">
+<p style="margin:.7em 0 .5em">Now tap the drinks and foods you have during the day. Remember that <b>water, tea, coffee, milk, soup, ice and some high-water-content foods all add to your fluid intake.</b></p>
+<p style="margin:.5em 0">The tracker will show you how much of <b>your advised daily fluid limit</b> you have used and how much remains.</p>
+<p style="margin:.5em 0"><b>Important:</b> <i>Do not know your fluid limit? Please ask your dialysis team rather than estimating it from your body weight.</i></p></div>
+<div class="meter" id="fbMeter" aria-hidden="true"><i id="fbBar"></i></div>
+<p class="fbtxt" id="fbTxt" aria-live="polite"></p>
+<p class="hint">Your day so far: <span id="fbLog"></span></p>
+<div class="fbitems" id="fbBtns"></div>
+<p id="fbMsg" class="callout" aria-live="polite"></p>
+<div class="row" style="gap:8px;flex-wrap:wrap"><button class="btn alt" id="fbUndo" type="button">↶ Undo last</button><button class="btn alt" id="fbReset" type="button">Start a new day</button><button class="btn alt say" id="fbSay" type="button" aria-pressed="false">🔊 Read my tracker</button></div>
+<p class="hint"><b>Your fluid needs are individual. Follow the fluid limit advised by your dialysis team.</b></p></div>
+<div class="card noprint"><h2 style="margin-top:0">🧠 Play: Smart or Not?</h2>
+<p>Quick, six cards. Was it a smart move on dialysis day?</p>
+<div class="game-card" id="gcText"></div>
+<div class="opt" id="gcBtns"><button class="btn" data-a="1">Smart</button><button class="btn alt" data-a="0">Not smart</button></div>
+<p id="gcMsg" class="callout hide"></p>
+<p><b id="gcScore"></b> <button class="btn alt hide" id="gcAgain">Play again</button></p></div></section>
+
+<h2>Questions about your result</h2>
+<div id="faq2"></div>
+
+<div class="card noprint"><h2 style="margin-top:0">Share this tool with friends</h2>
+<div class="share" id="share"></div></div>
+
+<div class="card noprint"><h2 style="margin-top:0">Subscribe to Medindia</h2>
+<p>Get simple, trusted kidney and health tips in your inbox.</p>
+<!-- TODO: point action at your real newsletter sign-up endpoint -->
+<form action="https://www.medindia.net/e-newsletter/empowering-better-health/index.htm" method="get" class="row" style="flex-wrap:wrap"><input type="email" name="email" placeholder="Your email" style="max-width:320px" aria-label="Email"><button class="btn" type="submit">Subscribe</button></form>
+<p class="hint">Follow us: <a href="https://www.facebook.com/medindiacom">Facebook</a> · <a href="https://twitter.com/medindia">X</a> · <a href="https://www.instagram.com/medindia/">Instagram</a> · <a href="https://www.linkedin.com/in/medindia">LinkedIn</a> · <a href="https://www.youtube.com/channel/UCrjzUwilbT1xuW-0FKYjT2A?sub_confirmation=1">YouTube</a> · <a href="https://pinterest.com/medindia/">Pinterest</a> · <a href="https://whatsapp.com/channel/0029VaksZPVGufInV7V4eq44">WhatsApp</a></p></div>
+
+<section class="card"><h2 style="margin-top:0">References</h2><ol class="refs" data-refs></ol><p class="hint">The evidence on this page is reviewed periodically and updated.</p></section>
+<p class="disc">This result is an estimate for information only. It does not replace advice from your kidney doctor or dialysis team. Talk to them before making any change.</p>
+<button class="fab noprint" id="fab" type="button">🎮 Games ↓</button>
+</main>
+</div>
+
+<footer><div class="wrap">© Medindia. All information is for education only and should not be used to diagnose or treat any condition. <a href="https://www.medindia.net/disclaimer.asp">Full disclaimer</a> · <a href="https://www.medindia.net/medindiaprivacy.asp">Privacy</a> · <a href="https://www.medindia.net/terms-of-use.asp">Terms</a></div></footer>
+
+<script>
+const REFS=[
+'Daugirdas, J. T., Depner, T. A., Inrig, J., Mehrotra, R., Rocco, M. V., Suri, R. S., Weiner, D. E., Greer, N., Ishani, A., MacDonald, R., Olson, C., Rutks, I., Slinin, Y., Wilt, T. J., Rocco, M., Kramer, H., Choi, M. J., Samaniego-Picota, M., Scheel, P. J., . . . Brereton, L. (2015). KDOQI clinical practice guideline for hemodialysis adequacy: 2015 update. <i>American Journal of Kidney Diseases, 66</i>(5), 884–930. <a href="https://doi.org/10.1053/j.ajkd.2015.07.015">https://doi.org/10.1053/j.ajkd.2015.07.015</a>',
+'Daugirdas, J. T. (1993). Second generation logarithmic estimates of single-pool variable volume Kt/V: An analysis of error. <i>Journal of the American Society of Nephrology, 4</i>(5), 1205–1213. <a href="https://doi.org/10.1681/ASN.V451205">https://doi.org/10.1681/ASN.V451205</a>',
+'Bossola, M., Mariani, I., Strizzi, C. T., Piccinni, C. P., &amp; Di Stasio, E. (2025). How to limit interdialytic weight gain in patients on maintenance hemodialysis: State of the art and perspectives. <i>Journal of Clinical Medicine, 14</i>(6), Article 1846. <a href="https://doi.org/10.3390/jcm14061846">https://doi.org/10.3390/jcm14061846</a>',
+'Zou, Z. H., Zhang, J. Q., Yi, Z. H., Chen, X., &amp; Qing, W. (2025). Effects of intradialytic exercise on frailty in maintenance hemodialysis patients: A systematic review and meta-analysis. <i>Frontiers in Physiology, 16</i>, Article 1600219. <a href="https://doi.org/10.3389/fphys.2025.1600219">https://doi.org/10.3389/fphys.2025.1600219</a>',
+'Ikizler, T. A., Burrowes, J. D., Byham-Gray, L. D., Campbell, K. L., Carrero, J.-J., Chan, W., Fouque, D., Friedman, A. N., Ghaddar, S., Goldstein-Fuchs, D. J., Kaysen, G. A., Kopple, J. D., Teta, D., Yee-Moon Wang, A., &amp; Cuppari, L. (2020). KDOQI clinical practice guideline for nutrition in CKD: 2020 update. <i>American Journal of Kidney Diseases, 76</i>(3, Suppl. 1), S1–S107. <a href="https://doi.org/10.1053/j.ajkd.2020.05.006">https://doi.org/10.1053/j.ajkd.2020.05.006</a>',
+'Razzera, B. N., Adamoli, A. N., Ranheiri, M. F., da Silva Oliveira, M., &amp; Feoli, A. M. P. (2022). Impacts of mindfulness-based interventions in people undergoing hemodialysis: A systematic review. <i>Brazilian Journal of Nephrology, 44</i>(1), 84–96. <a href="https://doi.org/10.1590/2175-8239-JBN-2021-0116">https://doi.org/10.1590/2175-8239-JBN-2021-0116</a>',
+'Barbosa, B. V. dos S., Sobrinho, V. P. C., Cardoso, A. P. R., Sobrinho, M. T., &amp; Ponce, D. (2025). Incremental vs. standard hemodialysis for preserving residual kidney function: A case-control study. <i>BMC Nephrology, 26</i>, Article 695. <a href="https://doi.org/10.1186/s12882-025-04550-0">https://doi.org/10.1186/s12882-025-04550-0</a>'
+];
+document.querySelectorAll('[data-refs]').forEach(ol=>{ol.innerHTML=REFS.map((r,i)=>`<li id="ref-${i+1}">${r}</li>`).join('')});
+/* duplicate ids: keep first list as anchor target, rename second */
+document.querySelectorAll('#view-result [data-refs] li').forEach(li=>li.id='r2-'+li.id);
+
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const PAGE='https://www.medindia.net/doctors/clinical_cal/ktv.asp';
+
+/* ---------- FAQ ---------- */
+const FAQ1=[
+['What is a good Kt/V?','For most people on hemodialysis three times a week, the minimum goal is 1.2 per session and the usual aim is about 1.4.[1] Your team may set a different goal for you.'],
+['What does URR mean?','URR stands for urea reduction ratio. It is the percent of urea that dropped during one session. About 65% matches a Kt/V of 1.2.'],
+['Why does Kt/V need weight and fluid removed?','Fluid removed carries urea out too, and your weight helps estimate how much water is in your body. Both change the true cleaning score.[2]'],
+['What is the difference between spKt/V and eKt/V?','spKt/V is calculated right after dialysis. eKt/V allows for urea that creeps back into your blood afterwards, so it is a little lower.'],
+['Can I work out Kt/V without blood tests?','Not accurately. You need the BUN before and after the session. Ask your unit for both numbers, or look at your monthly lab report.'],
+['Does this calculator work for peritoneal dialysis (PD)?','The first tab is for hemodialysis. The PD tab shows only the dialysate part of the weekly PD Kt/V. It does not show your overall PD adequacy on its own, and PD targets differ, so compare it with the goal your PD team gave you.'],
+['Can exercise, music or mindfulness change my Kt/V?','Exercise during dialysis helped strength and walking in a 2025 review.[4] Mindfulness helped anxiety and sleep in some trials.[6] Neither has been proven to be a stand-alone way to raise Kt/V, so use them as extras.'],
+['My result looks very high or very low. Should I worry?','One reading can be off. A wrong sample time or a typing mistake is common. Repeat the check and tell your team, who can look at your trend over several months.']
+];
+const FAQ2=[
+['My result is below 1.2. What now?','Do not panic. One low reading can happen. Tell your team, check that the post-session sample was taken correctly, and ask what can be changed, such as time, blood flow or access.'],
+['Does a good Kt/V mean I am fine?','Not always. Kt/V only measures urea. How you feel, your blood pressure, your fluid and your other blood tests matter too.'],
+['Why is my eKt/V lower than spKt/V?','Because urea moves back into blood after dialysis ends. eKt/V allows for that.'],
+['How often should I check?','Many units check once a month. Ask your team how often is right for you.'],
+['What can I do to help receive my prescribed dialysis dose?','Complete your prescribed session, avoid missing treatment time, and tell your dialysis team about any access or treatment-related problems. Any change to your prescription is decided by your team.[1]']
+];
+function renderFaq(el,arr){
+  el.innerHTML=arr.map(([q,a])=>`<details><summary>${q}</summary><p>${a.replace(/\[(\d)\]/g,'<sup><a href="#ref-$1">[$1]</a></sup>')}</p></details>`).join('');
+}
+renderFaq($('#faq'),FAQ1);renderFaq($('#faq2'),FAQ2);
+function fixRefs(){$$('#view-result sup a').forEach(a=>a.setAttribute('href',a.getAttribute('href').replace('#ref-','#r2-ref-')))}fixRefs();
+$('#faq-ld').textContent=JSON.stringify({"@context":"https://schema.org","@type":"FAQPage","mainEntity":FAQ1.map(([q,a])=>({"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a.replace(/\[\d\]/g,'')}}))});
+
+/* ---------- units / tabs ---------- */
+const U={bun:'mgdl',uf:'l',wt:'kg'};
+$$('.seg').forEach(seg=>seg.addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b)return;
+  seg.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));
+  U[seg.dataset.seg]=b.dataset.u;
+  if(seg.dataset.seg==='bun')$('#bunUnitLbl').textContent=b.dataset.u==='mgdl'?'mg/dL':'mmol/L';
+}));
+$$('.tab').forEach(t=>t.addEventListener('click',()=>{
+  $$('.tab').forEach(x=>x.setAttribute('aria-selected',x===t));
+  $('#form-hd').classList.toggle('hide',t.dataset.mode!=='hd');
+  $('#form-pd').classList.toggle('hide',t.dataset.mode!=='pd');
+}));
+$('#fillEx').onclick=()=>{$('#pre').value=70;$('#post').value=20;$('#hr').value=4;$('#mn').value=0;$('#uf').value=2.5;$('#wt').value=68;};
+
+/* ---------- calculation ---------- */
+function compute({pre,post,t,uf,w,access}){
+  if(!(pre>0)||!(post>0)||!(t>0)||!(w>0)||uf<0||isNaN(uf))return {error:'Please fill every box with numbers above zero.'};
+  if(t<0.5||t>12)return {error:'Dialysis time looks unusual. Please check the hours and minutes.'};
+  if(w<20||w>300)return {error:'Please check the weight. It should be your weight after dialysis.'};
+  const R=post/pre;
+  if(R>=1)return {error:'The after-BUN must be lower than the before-BUN. Please check both numbers.'};
+  if(R-0.008*t<=0)return {error:'These numbers cannot be used together. Please check them.'};
+  const sp=-Math.log(R-0.008*t)+(4-3.5*R)*uf/w;
+  const urr=(1-R)*100;
+  const ek=access==='cvc'?sp-0.47*(sp/t)+0.02:sp-0.6*(sp/t)+0.03;
+  return {sp,urr,ek,t,R,uf,w};
+}
+let LAST=null;
+function readHD(){
+  const f=id=>parseFloat($(id).value);
+  let uf=f('#uf'),w=f('#wt');
+  if(U.uf==='gal')uf*=3.78541;
+  if(U.wt==='lb')w*=0.45359237;
+  const t=(parseFloat($('#hr').value)||0)+(parseFloat($('#mn').value)||0)/60;
+  return {pre:f('#pre'),post:f('#post'),t,uf:isNaN(uf)?NaN:uf,w,access:$('#acc').value};
+}
+$('#form-hd').addEventListener('submit',e=>{
+  e.preventDefault();
+  const r=compute(readHD());
+  if(r.error){$('#err-hd').textContent=r.error;return}
+  $('#err-hd').textContent='';LAST=r;showResult(r);
+});
+let PDLAST='';
+$('#form-pd').addEventListener('submit',e=>{
+  e.preventDefault();
+  const v=+$('#pdv').value,d=+$('#pdd').value,p=+$('#pdp').value,V=+$('#pdvv').value,o=$('#pd-out');
+  const bad=m=>{$('#err-pd').textContent=m;o.classList.add('hide')};
+  if(!(v>0&&d>0&&p>0&&V>0))return bad('Please fill every box with numbers above zero.');
+  if(v<1||v>30)return bad('Please check the 24-hour drained fluid. It is usually about 4 to 20 litres. Enter litres, not mL.');
+  if(V<20||V>70)return bad('Please check body water (V). It is usually about 20 to 60 litres. Your clinic can tell you your value.');
+  if(d>p)return bad('Urea in the drained fluid cannot be higher than urea in the blood (same units). Please check both numbers.');
+  const k=(d/p)*v*7/V;
+  if(k>4)return bad('This result is higher than is realistic. Please re-check the numbers you entered.');
+  $('#err-pd').textContent='';
+  PDLAST=`My peritoneal dialysis Kt/V (dialysate part only, weekly): ${k.toFixed(2)}.`;
+  o.classList.remove('hide');
+  o.innerHTML=`<b>Dialysate part of weekly PD Kt/V: ${k.toFixed(2)}</b><br>This value shows only the peritoneal (dialysate) part of Kt/V. By itself it does not show your overall PD adequacy, which also depends on your own kidney function and other factors. Compare it with the target your PD team gave you, and ask your team to interpret it.<div class="pdbtns noprint"><button class="btn alt" type="button" id="pdCopy">Copy my result</button><button class="btn alt" type="button" id="pdPrint">Print</button><span class="hint" id="pdMsg"></span></div>`;
+});
+$('#pd-out').addEventListener('click',async e=>{const b=e.target.closest('button');if(!b)return;
+  if(b.id==='pdCopy'){try{await navigator.clipboard.writeText(PDLAST);$('#pdMsg').textContent='Copied!'}catch(_){$('#pdMsg').textContent=PDLAST}}
+  if(b.id==='pdPrint'){document.body.classList.add('printpd');window.print();setTimeout(()=>document.body.classList.remove('printpd'),500)}});
+window.addEventListener('afterprint',()=>document.body.classList.remove('printpd'));
+
+/* ---------- result view ---------- */
+function level(sp){return sp<1.2?'low':sp<1.4?'mid':'good'}
+function gauge(sp){
+  const max=2.4,v=Math.max(0,Math.min(sp,max)),a=Math.PI*(1-v/max);
+  const cx=110,cy=110,r=84;
+  const pt=(val,rad)=>{const an=Math.PI*(1-val/max);return [cx+rad*Math.cos(an),cy-rad*Math.sin(an)]};
+  const arc=(v0,v1,col)=>{const [x0,y0]=pt(v0,r),[x1,y1]=pt(v1,r);return `<path d="M${x0} ${y0} A${r} ${r} 0 0 1 ${x1} ${y1}" stroke="${col}" stroke-width="16" fill="none"/>`};
+  const [nx,ny]=pt(v,r-8);
+  return arc(0,1.2,'#e5a29c')+arc(1.2,1.4,'#f1c97a')+arc(1.4,2.4,'#8fd0ab')+
+   `<line x1="${cx}" y1="${cy}" x2="${nx}" y2="${ny}" stroke="#1c3f74" stroke-width="4" stroke-linecap="round"/><circle cx="${cx}" cy="${cy}" r="7" fill="#1c3f74"/>`+
+   `<text x="22" y="126" font-size="11" fill="#5a6776">0</text><text x="92" y="22" font-size="11" fill="#5a6776">1.2</text><text x="190" y="126" font-size="11" fill="#5a6776">2.4</text>`;
+}
+const MEAN={
+ low:['Below the minimum goal','Your dialysis dose this session was under the usual minimum of 1.2.','<p><b>In simple words:</b> your urea-clearance result is below the usual target range this time.</p><p>One low reading does not tell the whole story, since a wrong sample time can cause it. Do these things:</p><ul><li>Show this result to your care team and ask for a repeat check.</li><li>Ask whether more time, a higher blood flow or a different filter could help.</li><li>Ask them to check your access (fistula, graft or catheter).</li><li>Stay for every minute of each session.</li></ul>'],
+ mid:['You meet the minimum, with little room to spare','Your result is at or above 1.2 but under the usual aim of about 1.4.','<p><b>In simple words:</b> your urea-clearance result is within the usual target range, but close to the minimum.</p><p>The aim of about 1.4 gives a safety cushion for days when things do not go perfectly.<sup><a href="#ref-1">[1]</a></sup> Ask if small changes, such as a few more minutes, could add room.</p><ul><li>Never cut sessions short.</li><li>Tell staff if you notice a slow flow or alarms.</li></ul>'],
+ good:['On target','Your result is at or above the usual aim of about 1.4.','<p><b>In simple words:</b> your urea-clearance result is within the usual target range.</p><p>Keep it up. Remember that Kt/V only measures urea. How you feel, your blood pressure and your fluid control matter too.</p><ul><li>Keep your fluid gain small between sessions.<sup><a href="#ref-3">[3]</a></sup></li><li>Eat enough protein, as advised by your dietitian.<sup><a href="#ref-5">[5]</a></sup></li></ul>']
+};
+const WHY={
+ 'Short time':'Sessions that are cut short, started late or paused for bathroom trips lower the total cleaning time. Ask to make up lost minutes.',
+ 'Slow blood flow':'If blood moves slowly through the filter, less urea is cleared. Needle position or access problems can cause this.',
+ 'Access problem':'A narrowed or clotted fistula, graft or catheter can reduce flow. Tell staff if the site is painful, swollen or the machine alarms.',
+ 'Sample timing':'The after-session blood sample needs to be collected using your dialysis centre\'s standard sampling protocol. If it is not, the result can look better or worse than it really is. Your centre can tell you how it is done.',
+ 'Big body size':'People with a larger body have more water to clean (a bigger V), so they may need more time or a stronger filter.'
+};
+function showResult(r){
+  $('#view-input').classList.add('hide');$('#view-result').classList.remove('hide');
+  try{history.replaceState(null,'','#result')}catch(_){}window.scrollTo({top:0});
+  const L=level(r.sp),m=MEAN[L];
+  $('#gauge').innerHTML=gauge(r.sp);
+  $('#rBadge').textContent=L==='good'?'Green: On target':L==='mid'?'Amber: Meets minimum':'Red: Below minimum';
+  $('#rBadge').className='badge '+(L==='good'?'g':L==='mid'?'a':'r');
+  $('#rHead').textContent='Your Kt/V is '+r.sp.toFixed(2);
+  $('#rSay').textContent=m[0]+'. '+m[1];
+  $('#sSp').textContent=r.sp.toFixed(2);$('#sUrr').textContent=r.urr.toFixed(0)+'%';$('#sEk').textContent=r.ek.toFixed(2);
+  const st=(ok,mid)=>ok?(mid?'⚠️ Close':'✅ Met'):'❌ Below';
+  $('#resTbl tbody').innerHTML=
+   `<tr><td>spKt/V</td><td>${r.sp.toFixed(2)}</td><td>1.2 minimum, about 1.4 aim</td><td>${r.sp>=1.4?'✅ On target':r.sp>=1.2?'⚠️ Close':'❌ Below'}</td></tr>`+
+   `<tr><td>URR</td><td>${r.urr.toFixed(0)}%</td><td>About 65% or more</td><td>${st(r.urr>=65,r.urr<70)}</td></tr>`+
+   `<tr><td>eKt/V (estimate)</td><td>${r.ek.toFixed(2)}</td><td>Usually a little lower than spKt/V</td><td>For your team</td></tr>`;
+  $$('#resTbl tbody tr').forEach(tr=>tr.onclick=()=>tr.classList.toggle('hl'));
+  $('#meaning').innerHTML=`<h3 style="margin-top:0">${m[0]}</h3><p class="hint">These targets mainly apply to conventional hemodialysis three times a week.</p>`+m[2];
+  $('#highNote').classList.toggle('hide',r.sp<=2.0);
+  $('#whyTabs').innerHTML=Object.keys(WHY).map((k,i)=>`<button class="chip" aria-pressed="false" data-w="${k}">${k}</button>`).join('');
+  $('#whyOut').textContent='Pick a reason above.';
+  $('#exR').value=0;exUpdate();
+  fbInit();gcInit();fixRefs();stopSay();
+}
+function exUpdate(){
+  if(!LAST)return;const x=+$('#exR').value;$('#exO').textContent=x;
+  const est=LAST.sp*((LAST.t*60+x)/(LAST.t*60));
+  const need=Math.max(0,Math.ceil((1.4/LAST.sp-1)*LAST.t*60/15)*15);
+  $('#exOut').innerHTML=`Estimated Kt/V with ${x} extra minutes: <b>${est.toFixed(2)}</b>. `+(LAST.sp>=1.4?'You are already at the aim.':`To reach about 1.4 you might need roughly <b>${need} more minutes</b>.`);
+}
+$('#exR').addEventListener('input',exUpdate);
+$('#whyTabs').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+  $$('#whyTabs button').forEach(x=>x.setAttribute('aria-pressed',x===b));$('#whyOut').innerHTML=`<h3 style="margin-top:0">${b.dataset.w}</h3><p style="margin:0">${WHY[b.dataset.w]}</p>`});
+$('#again').onclick=()=>{stopSay();$('#view-result').classList.add('hide');$('#view-input').classList.remove('hide');try{history.replaceState(null,'',location.pathname)}catch(_){}window.scrollTo({top:0})};
+window.addEventListener('hashchange',()=>{if(!location.hash&&!$('#view-result').classList.contains('hide'))$('#again').click()});
+$('#copyRes').onclick=async()=>{if(!LAST)return;
+  const t=`My dialysis Kt/V: ${LAST.sp.toFixed(2)}; URR: ${LAST.urr.toFixed(0)}%.`;
+  try{await navigator.clipboard.writeText(t);$('#copyRes2').textContent='Copied!'}catch(_){$('#copyRes2').textContent=t}};
+
+/* ---------- lifestyle filters ---------- */
+$('#lifeTabs').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+  $$('#lifeTabs button').forEach(x=>x.setAttribute('aria-pressed',x===b));
+  $$('#lifeCards .mini').forEach(c=>c.classList.toggle('hide',b.dataset.l!=='all'&&c.dataset.l!==b.dataset.l))});
+$('#habTabs').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+  $$('#habTabs button').forEach(x=>x.setAttribute('aria-pressed',x===b));
+  $$('#hab>div').forEach(d=>d.classList.toggle('hide',d.dataset.h!==b.dataset.h))});
+
+/* ---------- glossary ---------- */
+const GL={'BUN':'Blood urea nitrogen. A waste product measured in a blood test.','Urea':'A waste made when your body uses protein. Healthy kidneys remove it.','URR':'Urea reduction ratio. The percent of urea cleared in one session.','Ultrafiltration':'The fluid taken out of your body during dialysis.','Dry weight':'Your weight when you have no extra fluid. Your team sets it.','Rebound':'Urea creeping back into the blood after dialysis ends.','Access':'The fistula, graft or catheter used to reach your blood.'};
+$('#gloss').innerHTML=Object.keys(GL).map(k=>`<button class="chip" aria-pressed="false">${k}</button>`).join('');
+$('#gloss').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+  $$('#gloss button').forEach(x=>x.setAttribute('aria-pressed',x===b));$('#glossOut').innerHTML=`<b>${b.textContent}:</b> ${GL[b.textContent]}`});
+
+/* ---------- from-scratch widget ---------- */
+function kvUpd(){
+  const K=+$('#kR').value,t=+$('#tR').value,V=+$('#vR').value;
+  $('#kO').textContent=K;$('#tO').textContent=t.toFixed(1);$('#vO').textContent=V;
+  const kv=K*t*60/1000/V;$('#kvO').textContent=kv.toFixed(2);
+  $('#kvBar').style.width=Math.min(100,kv/2*100)+'%';
+  const m=$('#kvMsg');m.className='badge '+(kv>=1.4?'g':kv>=1.2?'a':'r');
+  m.textContent=kv>=1.4?'Reaches the 1.4 aim':kv>=1.2?'Meets the 1.2 minimum':'Below 1.2';
+}
+['#kR','#tR','#vR'].forEach(s=>$(s).addEventListener('input',kvUpd));kvUpd();
+
+/* ---------- symptoms ---------- */
+const SYM=['Weakness and tiredness','Loss of appetite','Yellow skin colour','Nausea or vomiting','Bad taste in the mouth','Weight loss','Poor sleep','Itching','Bleeding that lasts long','Frequent infections'];
+$('#sym').innerHTML=SYM.map((s,i)=>`<label><input type="checkbox" value="${i}">${s}</label>`).join('');
+$('#sym').addEventListener('change',()=>{const n=$$('#sym input:checked').length,o=$('#symOut');
+  o.className='callout'+(n>=3?' warn':'');
+  o.textContent=n===0?'Tick anything you have noticed lately.':n<3?`You ticked ${n}. Mention this at your next session.`:`You ticked ${n}. Several signs together are worth telling your care team about soon.`});
+
+/* ---------- protein ---------- */
+$('#pw').addEventListener('input',()=>{const w=+$('#pw').value;
+  $('#pOut').textContent=w>=20?`Example range: about ${Math.round(w*1.0)} to ${Math.round(w*1.2)} g of protein a day. Your dietitian will set your exact amount.`:'Enter your weight to see an example range.'});
+
+/* ---------- embed + share ---------- */
+$('#copyEmbed').onclick=async()=>{try{await navigator.clipboard.writeText($('#embed').value);$('#copyMsg').textContent='Copied!'}catch(_){$('#embed').select()}};
+const T=encodeURIComponent('Kt/V & URR Calculator – Check Your Dialysis Adequacy'),Uu=encodeURIComponent(PAGE);
+const IC={
+wa:'M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z',
+fb:'M14 8h3V4h-3c-2.8 0-4 1.8-4 4v2H7v4h3v8h4v-8h3l1-4h-4V8.5c0-.3.2-.5.5-.5z',
+x:'M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z',
+li:'M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z',
+tg:'M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z',
+pi:'M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z',
+em:'M3 5h18v14H3zM3 6l9 7 9-7',
+ln:'M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1'};
+const ico=(k,st)=>st?`<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${IC[k]}"/></svg>`:`<svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="${IC[k]}"/></svg>`;
+$('#share').innerHTML=[
+['WhatsApp','wa','#25D366',`https://api.whatsapp.com/send?text=${T}%0A${Uu}`],['Facebook','fb','#1877F2',`https://www.facebook.com/sharer/sharer.php?u=${Uu}`],['X','x','#111',`https://twitter.com/intent/tweet?url=${Uu}&text=${T}`],['LinkedIn','li','#0A66C2',`https://www.linkedin.com/sharing/share-offsite/?url=${Uu}`],['Telegram','tg','#26A5E4',`https://t.me/share/url?url=${Uu}&text=${T}`],['Pinterest','pi','#E60023',`https://pinterest.com/pin/create/button/?url=${Uu}&description=${T}`],['Email','em','#5a6776',`mailto:?subject=${T}&body=${Uu}`]
+].map(([n,k,c,h])=>`<a class="sh" style="--c:${c}" href="${h}" target="_blank" rel="noopener" aria-label="Share on ${n}" title="${n}">${ico(k,k==='em')}<span>${n}</span></a>`).join('')+`<button class="sh" id="copyLink" type="button" style="--c:#1c3f74" aria-label="Copy link" title="Copy link">${ico('ln',1)}<span>Copy link</span></button>`;
+document.addEventListener('click',async e=>{const b=e.target.closest('#copyLink');if(!b)return;const sp=b.querySelector('span');try{await navigator.clipboard.writeText(PAGE);sp.textContent='Copied!';setTimeout(()=>sp.textContent='Copy link',1800)}catch(_){}});
+
+/* ---------- game 1: fluid budget ---------- */
+const DR=[['🍵','Cup of tea',150,'Tea counts as fluid.'],['☕','Cup of coffee',150,'Coffee counts as fluid.'],['💧','Glass of water',250,'Plain water counts fully.'],['🥛','Glass of milk',250,'Milk counts as fluid.'],['🍲','Bowl of soup',300,'Soup is mostly fluid, so it counts.'],['🍉','Watermelon slice',200,'Juicy fruit is mostly water.'],['🧊','Ice chips',50,'Ice melts into fluid, so it counts too.'],['🍟','Salty chips',0,'Salty food does not add fluid itself, but it makes you thirsty and fluid control harder.']];
+let FB={lim:0,log:[]};
+const fbTot=()=>FB.log.reduce((t,i)=>t+DR[i][2],0);
+const fbLimit=()=>{const v=+$('#fbLim').value;return v>=300&&v<=5000?v:0};
+function fbInit(){FB.log=[];
+  $('#fbBtns').innerHTML=DR.map((d,i)=>`<button class="fbi" type="button" data-i="${i}"><span class="em">${d[0]}</span><b>${d[1]}</b><small>${d[2]?'+'+d[2]+' mL':'adds thirst'}</small></button>`).join('');
+  fbDraw()}
+function fbDraw(){FB.lim=fbLimit();const t=fbTot(),c=FB.lim,p=c?t/c*100:0,left=c-t,last=FB.log.length?DR[FB.log[FB.log.length-1]]:null;
+  $('#fbBar').style.width=Math.min(100,p)+'%';$('#fbMeter').className='meter'+(p>100?' over':p>=80?' near':'');
+  $$('#fbBtns button').forEach(b=>b.disabled=!c);
+  $('#fbTxt').innerHTML=!c?'Enter your fluid limit above to begin.':left>=0?`<b>${left} mL left</b> of your ${c} mL limit (${t} mL used)`:`<b>${-left} mL over</b> your ${c} mL limit`;
+  $('#fbLog').textContent=FB.log.length?FB.log.map(i=>DR[i][0]).join(' '):'nothing yet';
+  const m=$('#fbMsg');m.className='callout'+(c&&p>100?' warn':'');
+  m.innerHTML=!c?'Ask your dialysis team for your daily fluid limit, then type it in mL above. Limits between 300 and 5000 mL can be entered.':!last?'Tap an item above to start filling your day.':p>100?'Over your limit. That extra fluid has to be taken out in your next session, which can feel harder. Try ice chips and less salt next time, and tell your dialysis team.<sup><a href="#r2-ref-3">[3]</a></sup>':p>=80?'Almost full. Choose small sips for the rest of the day.':(last[3]+(last[2]?' You still have room.':''));
+  $('#fbUndo').disabled=!FB.log.length}
+$('#fbBtns').addEventListener('click',e=>{const b=e.target.closest('button');if(!b||b.disabled)return;FB.log.push(+b.dataset.i);fbDraw()});
+$('#fbLim').addEventListener('input',fbDraw);
+$('#fbUndo').onclick=()=>{FB.log.pop();fbDraw()};
+$('#fbReset').onclick=()=>{FB.log=[];fbDraw()};
+
+/* ---------- jump-to-games button ---------- */
+const goGames=()=>$('#games').scrollIntoView({behavior:'smooth',block:'start'});
+$('#toGames').addEventListener('click',e=>{e.preventDefault();goGames()});
+let inG=false;
+$('#fab').addEventListener('click',()=>inG?window.scrollTo({top:0,behavior:'smooth'}):goGames());
+if('IntersectionObserver' in window)new IntersectionObserver(es=>{inG=es[0].isIntersecting;$('#fab').textContent=inG?'↑ My result':'🎮 Games ↓'},{rootMargin:'0px 0px -35% 0px'}).observe($('#games'));
+
+/* ---------- game 2: smart or not ---------- */
+const GC=[
+['⏰','You arrive 20 minutes late and ask to finish early.',0,'Missed minutes mean less cleaning. Ask to make up the time instead.'],
+['🕐','You stay until the very end, even if you feel restless.',1,'Every minute adds to your Kt/V. Ask for help if you feel unwell.'],
+['📝','You track your drinks with a notebook or phone app.',1,'Self-tracking can help limit weight gain between sessions.'],
+['🥗','You skip your dietitian visit because you feel fine.',0,'Food needs change over time. Regular advice helps.'],
+['🩺','You tell staff when your needle site hurts or the flow seems slow.',1,'Early access problems are easier to fix.'],
+['🧂','You eat a big bag of salty snacks to treat yourself.',0,'Salt makes you thirsty, so you drink more and gain more fluid.']
+];
+let G={i:0,s:0};
+function gcInit(){G={i:0,s:0};$('#gcAgain').classList.add('hide');$('#gcBtns').classList.remove('hide');$('#gcMsg').classList.add('hide');gcShow()}
+function gcShow(){if(G.i>=GC.length){$('#gcText').textContent='All done!';$('#gcBtns').classList.add('hide');$('#gcScore').textContent=`You scored ${G.s} of ${GC.length}. `+(G.s>=5?'🏅 Dialysis pro!':G.s>=3?'Good start.':'Keep learning, you can do it.');$('#gcAgain').classList.remove('hide');return}
+  $('#gcText').innerHTML=`<span class="gem">${GC[G.i][0]}</span><span>${GC[G.i][1]}</span>`;$('#gcScore').textContent=`Card ${G.i+1} of ${GC.length}`}
+$('#gcBtns').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+  const ok=(+b.dataset.a)===GC[G.i][2];if(ok)G.s++;
+  const m=$('#gcMsg');m.className='callout'+(ok?'':' warn');m.textContent=(ok?'✅ Correct. ':'❌ Not quite. ')+GC[G.i][3];G.i++;gcShow()});
+$('#gcAgain').onclick=gcInit;
+
+/* ---------- talking kidney (browser read-aloud, no external service) ---------- */
+const KID='<svg viewBox="0 0 100 100" aria-hidden="true"><path d="M58 8C82 6 96 24 94 48 92 74 78 94 54 94 30 94 20 80 26 66 30 58 40 56 40 48 40 40 30 36 28 28 26 16 42 10 58 8Z" fill="#e8897a" stroke="#b5483c" stroke-width="3" stroke-linejoin="round"/><path d="M40 48C40 40 30 36 28 28" fill="none" stroke="#c9604f" stroke-width="3" stroke-linecap="round" opacity=".6"/><circle cx="64" cy="42" r="4" fill="#3a2420"/><circle cx="82" cy="42" r="4" fill="#3a2420"/><circle cx="65.2" cy="40.6" r="1.3" fill="#fff"/><circle cx="83.2" cy="40.6" r="1.3" fill="#fff"/><ellipse cx="60" cy="55" rx="5" ry="3" fill="#f6b2a8"/><ellipse cx="86" cy="55" rx="5" ry="3" fill="#f6b2a8"/><path class="mouth" d="M65 56Q73 67 81 56Z" fill="#7a2a24"/></svg>';
+$$('.kid-slot').forEach(sl=>{const b=document.createElement('button');b.type='button';b.className='kid say-kid';b.setAttribute('aria-label','Tap to hear me talk');b.innerHTML=KID;sl.replaceWith(b)});
+const TTS='speechSynthesis' in window&&'SpeechSynthesisUtterance' in window;
+if(!TTS)document.documentElement.classList.add('nospeech');
+let VOICE=null,curBtn=null,SAYTOK=0;
+function pickVoice(){if(!TTS)return;const vs=speechSynthesis.getVoices();VOICE=vs.find(v=>/en[-_]IN/i.test(v.lang))||vs.find(v=>/^en/i.test(v.lang))||null}
+if(TTS){pickVoice();speechSynthesis.onvoiceschanged=pickVoice}
+function norm(t){return t.replace(/\bspKt\/V/g,'S P K T over V').replace(/\beKt\/V/g,'E K T over V').replace(/Kt\/V/g,'K T over V').replace(/\bURR\b/g,'U R R').replace(/\bBUN\b/g,'B U N').replace(/\bmL\b/g,'millilitres').replace(/\bPD\b/g,'P D').replace(/\bHD\b/g,'H D').replace(/\[\d\]/g,'').replace(/%/g,' percent').replace(/\s+/g,' ').trim()}
+function setTalk(on,btn){$$('.kid').forEach(k=>k.classList.toggle('talking',on));$$('.say').forEach(x=>x.setAttribute('aria-pressed',on&&x===btn));curBtn=on?btn:null}
+function stopSay(){if(!TTS)return;SAYTOK++;speechSynthesis.cancel();setTalk(false)}
+function sayText(text,btn){
+  if(!TTS)return;
+  if(curBtn&&curBtn===btn){stopSay();return}
+  speechSynthesis.cancel();const tok=++SAYTOK;
+  const parts=norm(text).match(/[^.!?]+[.!?]*/g)||[];let i=0;
+  setTalk(true,btn);
+  const next=()=>{if(tok!==SAYTOK)return;if(i>=parts.length){setTalk(false);return}
+    const u=new SpeechSynthesisUtterance(parts[i++]);u.lang=VOICE?VOICE.lang:'en-IN';if(VOICE)u.voice=VOICE;u.rate=.92;u.onend=next;u.onerror=()=>{if(tok===SAYTOK)setTalk(false)};speechSynthesis.speak(u)};
+  setTimeout(next,60)}
+function readEl(sel){const e=$(sel);return e?e.textContent:''}
+function resultSpeech(){if(!LAST)return 'Please calculate your result first.';
+  const L=level(LAST.sp),m=MEAN[L];
+  const tail=L==='low'?'One reading does not tell the whole story. Please show this result to your dialysis team.':L==='mid'?'Please talk to your dialysis team about it.':'Remember that Kt/V measures urea only. How you feel, your blood pressure and your fluid control matter too.';
+  return `Your Kt/V is ${LAST.sp.toFixed(2)}. ${m[0]}. ${m[1]} Your U R R is ${LAST.urr.toFixed(0)} percent. Your estimated equilibrated Kt/V, after rebound, is ${LAST.ek.toFixed(2)}. These targets mainly apply to conventional hemodialysis three times a week. ${tail} This is for information only and does not replace advice from your dialysis team.`}
+function fluidSpeech(){const c=FB.lim,t=fbTot();
+  if(!c)return 'Please enter the daily fluid limit advised by your dialysis team, in millilitres, to begin.';
+  return (t<=c?`You have used ${t} of your ${c} millilitre limit. ${c-t} millilitres remain.`:`You are ${t-c} millilitres over your ${c} millilitre limit.`)+' Your fluid needs are individual. Follow the fluid limit advised by your dialysis team.'}
+document.addEventListener('click',e=>{
+  const k=e.target.closest('.kid');
+  if(k){const row=k.closest('.kid-row');const b=row&&row.querySelector('.say');if(b)b.click();return}
+  const b=e.target.closest('.say');if(!b)return;
+  if(b.id==='sayRes')sayText(resultSpeech(),b);
+  else if(b.id==='fbSay')sayText(fluidSpeech(),b);
+  else if(b.dataset.read)sayText(readEl(b.dataset.read),b)});
+window.addEventListener('pagehide',stopSay);
+const TILE={sp:'spKt/V: how much urea this session cleared, worked out from your before and after blood tests, the fluid removed and the session time.',urr:'URR: the percent of urea that dropped during this session.',ek:'eKt/V: spKt/V adjusted for urea that creeps back into the blood after dialysis (rebound). It is usually a little lower.'};
+$('.stat').addEventListener('click',e=>{const b=e.target.closest('.tile');if(!b)return;$$('.tile').forEach(x=>x.setAttribute('aria-pressed',x===b));$('#tileOut').textContent=TILE[b.dataset.t]});
+</script>
+</body>
+</html>
